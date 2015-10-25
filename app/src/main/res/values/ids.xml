@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item
+        type="id"
+        name="id_holder" />
+    <item
+        type="id"
+        name="id_servidor"/>
+    <item
+        type="id"
+        name="id_tipo"/>
+    <item
+        type="id"
+        name="id_notificacion"/>
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">CUT Colombia</string>
+
+    <!-- Vista contenedor -->
+    <string-array name="menu_array">
+        <item>NOTICIAS</item> // items
+        <item>EVENTOS</item>
+        <item>REDES SOCIALES</item>
+        <item>CONSULTAR</item>
+        <item>CUT COLOMBIA</item>
+    </string-array>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Noticias Fragment -->
+</resources>

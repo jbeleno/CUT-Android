@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/negro">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/noticia_imagen"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:adjustViewBounds="true"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/sombras"/>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/noticia_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/blanco"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="32dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/noticia_bloque_hora"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="4dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_clock"/>
+
+        <TextView
+            android:id="@+id/noticia_tiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/blanco"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
