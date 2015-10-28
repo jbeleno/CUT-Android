@@ -67,6 +67,7 @@ public class NoticiasAdapter extends ArrayAdapter<NoticiasEntry>{
         }
 
         rowView.setTag(R.id.id_servidor, entry.getIdNoticia());
+        rowView.setTag(R.id.url, entry.getUrl());
 
         return rowView;
     }

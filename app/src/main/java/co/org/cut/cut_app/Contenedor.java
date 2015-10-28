@@ -1,8 +1,8 @@
 package co.org.cut.cut_app;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.res.Configuration;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -66,9 +66,9 @@ public class Contenedor extends AppCompatActivity {
         Fragment fragment = new NoticiasFragment();
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, fragment)
+                .replace(R.id.content_frame, fragment, null)
                 .commit();
 
         mMenuTitles = getResources().getStringArray(R.array.menu_array);
@@ -139,7 +139,7 @@ public class Contenedor extends AppCompatActivity {
         Fragment fragment = new NoticiasFragment();
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();

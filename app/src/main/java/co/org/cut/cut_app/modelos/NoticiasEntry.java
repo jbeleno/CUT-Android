@@ -1,17 +1,16 @@
 package co.org.cut.cut_app.modelos;
 
-/**
- * Created by Developer_1DOC3 on 24/10/15.
- */
+
 public class NoticiasEntry {
         int idNoticia;
-        String titulo, tiempo, imagen;
+        String titulo, tiempo, imagen, url;
 
-        public NoticiasEntry(int idNoticia, String titulo, String tiempo, String imagen){
+        public NoticiasEntry(int idNoticia, String titulo, String tiempo, String imagen, String url){
             this.idNoticia = idNoticia;
             this.titulo = titulo;
             this.tiempo = tiempo;
             this.imagen = imagen;
+            this.url = url;
         }
 
     public int getIdNoticia() {
@@ -30,6 +29,10 @@ public class NoticiasEntry {
         return titulo;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public void setIdNoticia(int idNoticia) {
         this.idNoticia = idNoticia;
     }
@@ -44,5 +47,9 @@ public class NoticiasEntry {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

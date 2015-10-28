@@ -12,4 +12,7 @@
     <item
         type="id"
         name="id_notificacion"/>
+    <item
+        type="id"
+        name="url"/>
 </resources>

@@ -1,9 +1,10 @@
 package co.org.cut.cut_app;
 
-import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -45,6 +46,7 @@ public class NoticiasFragment extends Fragment {
     String STR_TITULO = "titulo";
     String STR_TIEMPO = "tiempo";
     String STR_IMAGEN = "imagen";
+    String STR_URL = "url";
 
     private ProgressDialog progress;
     private SwipeRefreshLayout swipeLayout;
@@ -117,8 +119,9 @@ public class NoticiasFragment extends Fragment {
                                 String titulo = publicacion.getString(STR_TITULO);
                                 String tiempo = publicacion.getString(STR_TIEMPO);
                                 String imagen = publicacion.getString(STR_IMAGEN);
+                                String url = publicacion.getString(STR_URL);
 
-                                entradas.add(new NoticiasEntry(IdNoticia, titulo, tiempo, imagen));
+                                entradas.add(new NoticiasEntry(IdNoticia, titulo, tiempo, imagen, url));
                             }
                             if (offset == 0) {
                                 adaptador = new NoticiasAdapter(getActivity(), 0, entradas, MyVolley.getImageLoader());
@@ -179,17 +182,16 @@ public class NoticiasFragment extends Fragment {
     private class NoticiasItemListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView parent, View view, int position, long id) {
-            /*
-            android.support.v4.app.Fragment fragment = new PreguntaFragment();
+            Fragment fragment = new WebFragment();
             Bundle args = new Bundle();
-            args.putInt(PreguntaFragment.ARG_ID, (Integer) view.getTag(R.id.id_servidor));
+            args.putString(WebFragment.ARG_URL, (String) view.getTag(R.id.url));
             fragment.setArguments(args);
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, fragment, getString(R.string.vista_pregunta))
+                    .replace(R.id.content_frame, fragment, null)
                     .addToBackStack(null)
-                    .commit();*/
+                    .commit();
         }
     }
 
