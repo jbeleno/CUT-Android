@@ -12,8 +12,9 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!-- Noticias Fragment -->
+    <!-- Información Fragment -->
+    <string name="informacion_address">Calle 35 Nº 7&#8211;25 / Piso 9</string>
+    <string name="informacion_telefono">PBX: 323 75 50 </string>
+    <string name="informacion_correo">prensacut@cut.org.co</string>
+    <string name="informacion_twitter">"@cutcolombia"</string>
 </resources>

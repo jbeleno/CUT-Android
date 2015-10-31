@@ -15,6 +15,9 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 
 import co.org.cut.cut_app.herramientas.MyVolley;
@@ -22,6 +25,11 @@ import co.org.cut.cut_app.modelos.MenuAdapter;
 import co.org.cut.cut_app.modelos.MenuEntry;
 
 public class Contenedor extends AppCompatActivity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "RQPE9mCfd664XDxEpSmXd7eIg";
+    private static final String TWITTER_SECRET = "trDfSOZt2sCRJukHJVObou58m6eQjZOS6K2UxZBnMYADliNiia";
+
     private String[] mMenuTitles;
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
@@ -41,6 +49,8 @@ public class Contenedor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_contenedor);
 
         MyVolley.init(this);
@@ -136,7 +146,23 @@ public class Contenedor extends AppCompatActivity {
     /** Swaps fragments in the main content view */
     private void selectItem(int position) {
         // Create a new fragment and specify the planet to show based on position
-        Fragment fragment = new NoticiasFragment();
+        Fragment fragment;
+
+
+        switch (position){
+            case 0:
+                fragment= new NoticiasFragment();
+                break;
+            case 1:
+                fragment= new NoticiasFragment();
+                break;
+            case 2:
+                fragment= new NoticiasFragment();
+                break;
+            default:
+                fragment= new InformacionFragment();
+                break;
+        }
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
