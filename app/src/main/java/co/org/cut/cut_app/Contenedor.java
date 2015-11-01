@@ -157,7 +157,13 @@ public class Contenedor extends AppCompatActivity {
                 fragment= new NoticiasFragment();
                 break;
             case 2:
-                fragment= new NoticiasFragment();
+                fragment= new HashTagTwitterFragment();
+                Bundle args = new Bundle();
+                args.putString(HashTagTwitterFragment.ARG_HASHTAG, "#twitterflock");
+                fragment.setArguments(args);
+                break;
+            case 3:
+                fragment= new ConsultarFragment();
                 break;
             default:
                 fragment= new InformacionFragment();

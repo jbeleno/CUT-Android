@@ -17,4 +17,12 @@
     <string name="informacion_telefono">PBX: 323 75 50 </string>
     <string name="informacion_correo">prensacut@cut.org.co</string>
     <string name="informacion_twitter">"@cutcolombia"</string>
+
+    <!-- Twitter -->
+    <string name="no_tweets">No hay tweets por el momento :(</string>
+
+    <!-- Consultar -->
+    <string name="placeholder_correo">Escribe aquí tu correo electrónico</string>
+    <string name="placeholder_consulta">Escribe aquí tu consulta acerca de temas laborales, sindicales, etc.</string>
+    <string name="btnConsultar">Enviar</string>
 </resources>
