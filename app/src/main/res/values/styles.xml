@@ -6,6 +6,11 @@
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/naranja</item>
         <item name="colorPrimaryDark">@color/naranja_oscuro</item>
+        <item name="android:actionBarStyle">@style/MiBarra</item>
+    </style>
+
+    <style name="MiBarra" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="background">@color/naranja</item>
     </style>
 
 </resources>

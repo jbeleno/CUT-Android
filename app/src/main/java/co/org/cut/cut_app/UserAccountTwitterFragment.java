@@ -2,6 +2,7 @@ package co.org.cut.cut_app;
 
 
 import android.os.Bundle;
+import android.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
@@ -15,32 +16,30 @@ import com.twitter.sdk.android.core.Result;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.tweetui.SearchTimeline;
 import com.twitter.sdk.android.tweetui.TimelineResult;
 import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
+import com.twitter.sdk.android.tweetui.UserTimeline;
 
 import io.fabric.sdk.android.Fabric;
 
 
-public class HashTagTwitterFragment extends ListFragment {
-    public static final String ARG_HASHTAG = "hashtag";
-    private String hashtag;
+public class UserAccountTwitterFragment extends ListFragment {
+    public static final String ARG_USER_ACCOUNT = "cuenta";
+    private String cuenta;
 
-    public HashTagTwitterFragment() {
-        // Required empty public constructor
+
+    public UserAccountTwitterFragment() {
+        TwitterAuthConfig authConfig =  new TwitterAuthConfig("S1MLsZpnXYWI0IOlP3wdxz1Q5", "KLxu6F6sObGLKYQzejD7G6UFRhbXCbrhw9V8duxRspSpI7DKO6");
+        Fabric.with(getContext(), new Twitter(authConfig));
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            hashtag = getArguments().getString(ARG_HASHTAG);
+            cuenta = getArguments().getString(ARG_USER_ACCOUNT);
         }
-
-        TwitterAuthConfig authConfig =  new TwitterAuthConfig("S1MLsZpnXYWI0IOlP3wdxz1Q5", "KLxu6F6sObGLKYQzejD7G6UFRhbXCbrhw9V8duxRspSpI7DKO6");
-        Fabric.with(getContext(), new Twitter(authConfig));
-
-
     }
 
     @Override
@@ -51,11 +50,11 @@ public class HashTagTwitterFragment extends ListFragment {
 
         final SwipeRefreshLayout swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_twitter);
 
-        final SearchTimeline searchTimeline = new SearchTimeline.Builder()
-                .query("#twitterflock")
+        final UserTimeline userTimeline = new UserTimeline.Builder()
+                .screenName(cuenta)
                 .build();
         final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(getActivity())
-                .setTimeline(searchTimeline)
+                .setTimeline(userTimeline)
                 .build();
         setListAdapter(adapter);
 

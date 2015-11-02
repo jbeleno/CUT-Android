@@ -11,8 +11,8 @@
         <com.android.volley.toolbox.NetworkImageView
             android:id="@+id/noticia_imagen"
             android:layout_width="match_parent"
-            android:gravity="center"
             android:adjustViewBounds="true"
+            android:src="@drawable/img_placeholder"
             android:layout_height="wrap_content"/>
 
         <View

@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.crashlytics.android.Crashlytics;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import io.fabric.sdk.android.Fabric;
@@ -50,7 +52,7 @@ public class Contenedor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
-        Fabric.with(this, new Twitter(authConfig));
+        Fabric.with(this, new Twitter(authConfig), new Crashlytics());
         setContentView(R.layout.activity_contenedor);
 
         MyVolley.init(this);
@@ -64,7 +66,7 @@ public class Contenedor extends AppCompatActivity {
         final ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {
             actionBar.setElevation(0);
-            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayShowTitleEnabled(true);
         }
 
         if(actionBar != null) {
@@ -145,27 +147,53 @@ public class Contenedor extends AppCompatActivity {
 
     /** Swaps fragments in the main content view */
     private void selectItem(int position) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if(getCurrentFocus() != null)
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
         // Create a new fragment and specify the planet to show based on position
         Fragment fragment;
 
+        ActionBar barra = getSupportActionBar();
 
         switch (position){
             case 0:
+                if(barra != null) {
+                    barra.setTitle("Noticias");
+                }
                 fragment= new NoticiasFragment();
                 break;
             case 1:
+                if(barra != null) {
+                    barra.setTitle("Eventos");
+                }
                 fragment= new NoticiasFragment();
                 break;
             case 2:
+                if(barra != null) {
+                    barra.setTitle("Twitter");
+                }
+                /*
+                This code is not working
                 fragment= new HashTagTwitterFragment();
                 Bundle args = new Bundle();
                 args.putString(HashTagTwitterFragment.ARG_HASHTAG, "#twitterflock");
+                fragment.setArguments(args);*/
+                fragment= new UserAccountTwitterFragment();
+                Bundle args = new Bundle();
+                args.putString(UserAccountTwitterFragment.ARG_USER_ACCOUNT, "@cutcolombia");
                 fragment.setArguments(args);
                 break;
             case 3:
+                if(barra != null) {
+                    barra.setTitle("Consultas");
+                }
                 fragment= new ConsultarFragment();
                 break;
             default:
+                if(barra != null) {
+                    barra.setTitle("CUT Colombia");
+                }
                 fragment= new InformacionFragment();
                 break;
         }

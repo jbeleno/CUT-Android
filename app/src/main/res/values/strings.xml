@@ -25,4 +25,7 @@
     <string name="placeholder_correo">Escribe aquí tu correo electrónico</string>
     <string name="placeholder_consulta">Escribe aquí tu consulta acerca de temas laborales, sindicales, etc.</string>
     <string name="btnConsultar">Enviar</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
