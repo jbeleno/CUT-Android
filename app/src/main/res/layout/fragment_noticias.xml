@@ -10,6 +10,6 @@
         android:layout_height="match_parent"
         android:divider="@color/gris_oscuro"
         android:dividerHeight="1dp"
-        android:background="@color/negro"/>
+        android:background="@color/gris_claro"/>
 
 </android.support.v4.widget.SwipeRefreshLayout>

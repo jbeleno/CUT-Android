@@ -16,9 +16,16 @@ repositories {
 
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'cutcolombia'
+            keyPassword 'cutcolombia'
+            storeFile file('/Users/Developer_1DOC3/Desktop/CUT android keys/cut.keystore')
+            storePassword 'cutcolombia'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.0"
-
     defaultConfig {
         applicationId "co.org.cut.cut_app"
         minSdkVersion 14
@@ -30,6 +37,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }

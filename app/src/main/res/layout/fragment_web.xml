@@ -2,6 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="co.org.cut.cut_app.WebFragment">
 
+    <TextView android:id="@+id/mensaje"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/gris_oscuro"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/cargando" />
+
     <WebView
         android:id="@+id/vista_web"
         android:layout_width="match_parent"

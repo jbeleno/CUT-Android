@@ -159,7 +159,7 @@ public class Contenedor extends AppCompatActivity {
                 fragment= new NoticiasFragment();
                 break;
             case 1:
-                fragment= new NoticiasFragment();
+                fragment= new EventosFragment();
                 break;
             case 2:
                 /*

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 public class WebFragment extends Fragment {
     public static final String ARG_URL = "url";
@@ -38,6 +39,7 @@ public class WebFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_web, container, false);
         WebView vistaWeb = (WebView) view.findViewById(R.id.vista_web);
+        final TextView mensaje = (TextView) view.findViewById(R.id.mensaje);
 
         vistaWeb.getSettings().setJavaScriptEnabled(true);
         vistaWeb .loadUrl(url);
@@ -46,6 +48,11 @@ public class WebFragment extends Fragment {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
+            }
+
+            @Override
+            public void onLoadResource(WebView view, String url) {
+                mensaje.setVisibility(View.GONE);
             }
         });
 
