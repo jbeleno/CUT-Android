@@ -154,25 +154,14 @@ public class Contenedor extends AppCompatActivity {
         // Create a new fragment and specify the planet to show based on position
         Fragment fragment;
 
-        ActionBar barra = getSupportActionBar();
-
         switch (position){
             case 0:
-                if(barra != null) {
-                    barra.setTitle("Noticias");
-                }
                 fragment= new NoticiasFragment();
                 break;
             case 1:
-                if(barra != null) {
-                    barra.setTitle("Eventos");
-                }
                 fragment= new NoticiasFragment();
                 break;
             case 2:
-                if(barra != null) {
-                    barra.setTitle("Twitter");
-                }
                 /*
                 This code is not working
                 fragment= new HashTagTwitterFragment();
@@ -185,15 +174,9 @@ public class Contenedor extends AppCompatActivity {
                 fragment.setArguments(args);
                 break;
             case 3:
-                if(barra != null) {
-                    barra.setTitle("Consultas");
-                }
                 fragment= new ConsultarFragment();
                 break;
             default:
-                if(barra != null) {
-                    barra.setTitle("CUT Colombia");
-                }
                 fragment= new InformacionFragment();
                 break;
         }
