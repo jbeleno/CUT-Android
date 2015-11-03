@@ -193,7 +193,7 @@ public class EventosFragment extends Fragment {
 
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             fragmentManager.beginTransaction()
-                    .replace(R.id.content_frame, fragment, null)
+                    .add(R.id.content_frame, fragment, null)
                     .addToBackStack(null)
                     .commit();
         }

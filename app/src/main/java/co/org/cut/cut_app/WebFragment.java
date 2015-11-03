@@ -51,7 +51,7 @@ public class WebFragment extends Fragment {
             }
 
             @Override
-            public void onLoadResource(WebView view, String url) {
+            public void onPageFinished(WebView view, String url) {
                 mensaje.setVisibility(View.GONE);
             }
         });

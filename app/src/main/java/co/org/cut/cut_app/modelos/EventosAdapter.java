@@ -66,7 +66,7 @@ public class EventosAdapter extends ArrayAdapter<EventosEntry> {
         if(entry.getImagen() != null && !entry.getImagen().equals("")){
             holder.imagen.setImageUrl(entry.getImagen(), mImageLoader);
         }else{
-            holder.imagen.setImageResource(android.R.color.transparent);
+            holder.imagen.setImageResource(R.drawable.img_placeholder);
         }
 
         rowView.setTag(R.id.id_servidor, entry.getIdEvento());

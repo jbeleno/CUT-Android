@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="co.org.cut.cut_app.ConsultarFragment">
+    tools:context="co.org.cut.cut_app.ConsultarFragment"
+    android:background="@color/gris_claro">
 
     <LinearLayout
         android:layout_width="match_parent"

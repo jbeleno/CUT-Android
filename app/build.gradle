@@ -20,7 +20,7 @@ android {
         config {
             keyAlias 'cutcolombia'
             keyPassword 'cutcolombia'
-            storeFile file('/Users/Developer_1DOC3/Desktop/CUT android keys/cut.keystore')
+            storeFile file('/Users/Developer_1DOC3/Desktop/CUT android keys/cutRelease.keystore')
             storePassword 'cutcolombia'
         }
     }
@@ -30,8 +30,8 @@ android {
         applicationId "co.org.cut.cut_app"
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
     buildTypes {
         release {
