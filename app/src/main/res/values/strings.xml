@@ -19,7 +19,7 @@
     <string name="informacion_twitter">"@cutcolombia"</string>
 
     <!-- Twitter -->
-    <string name="no_tweets">No hay tweets por el momento :(</string>
+    <string name="no_tweets">Cargando tweets&#8230;</string>
 
     <!-- Consultar -->
     <string name="placeholder_correo">Escribe aquí tu correo electrónico</string>

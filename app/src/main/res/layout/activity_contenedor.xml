@@ -4,7 +4,8 @@
     android:id="@+id/my_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:clickable="true">
 
     <!-- Your normal content view -->
     <LinearLayout
@@ -44,7 +45,8 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        android:background="@color/gris_claro">
+        android:background="@color/gris_claro"
+        android:clickable="true">
 
         <ImageView
             android:layout_width="match_parent"

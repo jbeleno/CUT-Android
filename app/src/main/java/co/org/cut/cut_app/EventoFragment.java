@@ -109,6 +109,8 @@ public class EventoFragment extends Fragment {
                         agenda.setText(Html.fromHtml(evento.getString(STR_AGENDA)));
 
                         String img = evento.getString(STR_IMAGEN);
+
+                        imagen.setDefaultImageResId(R.drawable.img_placeholder);
                         if(img != null && !img.equals("")){
                             imagen.setImageUrl(img, MyVolley.getImageLoader());
                         }else{

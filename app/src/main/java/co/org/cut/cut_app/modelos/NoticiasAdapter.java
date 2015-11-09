@@ -60,6 +60,8 @@ public class NoticiasAdapter extends ArrayAdapter<NoticiasEntry>{
 
         holder.titulo.setText(entry.getTitulo());
         holder.tiempo.setText(entry.getTiempo());
+        holder.imagen.setDefaultImageResId(R.drawable.img_placeholder);
+
         if(entry.getImagen() != null && !entry.getImagen().equals("")){
             holder.imagen.setImageUrl(entry.getImagen(), mImageLoader);
         }else{

@@ -63,6 +63,8 @@ public class EventosAdapter extends ArrayAdapter<EventosEntry> {
         holder.nombre.setText(entry.getNombre());
         holder.descripcion.setText(entry.getDescripcion());
         holder.tiempo.setText(entry.getTiempo());
+        holder.imagen.setDefaultImageResId(R.drawable.img_placeholder);
+
         if(entry.getImagen() != null && !entry.getImagen().equals("")){
             holder.imagen.setImageUrl(entry.getImagen(), mImageLoader);
         }else{

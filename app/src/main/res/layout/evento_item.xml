@@ -8,8 +8,9 @@
         android:id="@+id/evento_imagen"
         android:layout_width="match_parent"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/img_placeholder"
-        android:layout_height="wrap_content"/>
+        android:layout_height="180dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

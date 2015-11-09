@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context="co.org.cut.cut_app.WebFragment">
+    android:layout_height="match_parent" tools:context="co.org.cut.cut_app.WebFragment"
+    android:clickable="true">
 
     <WebView
         android:id="@+id/vista_web"

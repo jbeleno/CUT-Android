@@ -1,6 +1,11 @@
 package co.org.cut.cut_app;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -9,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -17,8 +23,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
+
+import co.org.cut.cut_app.gcm.QuickstartPreferences;
+import co.org.cut.cut_app.gcm.RegistrationIntentService;
 import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 
@@ -27,6 +38,17 @@ import co.org.cut.cut_app.modelos.MenuAdapter;
 import co.org.cut.cut_app.modelos.MenuEntry;
 
 public class Contenedor extends AppCompatActivity {
+
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private static final String TAG = "Contenedor";
+
+    private static final String ARG_TYPE = "tipo";
+    private static final String ARG_ID = "id";
+
+    private static final String ARG_TYPE_EVENT = "evento";
+    private static final String ARG_TYPE_NEW = "noticia";
+
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
     // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
     private static final String TWITTER_KEY = "RQPE9mCfd664XDxEpSmXd7eIg";
@@ -72,7 +94,11 @@ public class Contenedor extends AppCompatActivity {
         if(actionBar != null) {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("NOTICIAS");
         }
+
+        // Se inician el GCM
+        initGCM();
 
         // Create a new fragment and specify the planet to show based on position
         Fragment fragment = new NoticiasFragment();
@@ -106,6 +132,128 @@ public class Contenedor extends AppCompatActivity {
         // Set the drawer toggle as the DrawerListener
         mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        //Se reciben las notificaciones y se abre el fragment adecuado
+        if(getIntent().getExtras()!=null){
+
+            if(getIntent().getStringExtra(ARG_TYPE) != null){
+                if(getIntent()
+                        .getStringExtra(ARG_TYPE)
+                        .equals(ARG_TYPE_EVENT)){
+
+                    fragment = new EventoFragment();
+                    Bundle args = new Bundle();
+                    args.putString(EventoFragment.ARG_ID_EVENTO, getIntent().getStringExtra(ARG_ID));
+                    fragment.setArguments(args);
+
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, fragment, null)
+                            .addToBackStack(null)
+                            .commit();
+                }else if(getIntent()
+                        .getStringExtra(ARG_TYPE)
+                        .equals(ARG_TYPE_NEW)){
+
+                    // Machete Alert: Aquí hay marcas de Scalibur, uso el ARG_ID
+                    // para pasar la URL
+                    fragment = new WebFragment();
+                    Bundle args = new Bundle();
+                    args.putString(WebFragment.ARG_URL, getIntent().getStringExtra(ARG_ID));
+                    fragment.setArguments(args);
+
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_frame, fragment, null)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        //Se reciben las notificaciones y se abre el fragment adecuado
+        if(intent.getExtras()!=null){
+
+            if(intent.getStringExtra(ARG_TYPE) != null){
+                if(intent
+                        .getStringExtra(ARG_TYPE)
+                        .equals(ARG_TYPE_EVENT)){
+
+                    Fragment fragmento = new EventoFragment();
+                    Bundle args = new Bundle();
+                    args.putString(EventoFragment.ARG_ID_EVENTO, intent.getStringExtra(ARG_ID));
+                    fragmento.setArguments(args);
+
+                    FragmentManager fragmentoManager = getSupportFragmentManager();
+                    fragmentoManager.beginTransaction()
+                            .add(R.id.content_frame, fragmento, null)
+                            .addToBackStack(null)
+                            .commit();
+                }else if(intent
+                        .getStringExtra(ARG_TYPE)
+                        .equals(ARG_TYPE_NEW)){
+
+                    // Machete Alert: Aquí hay marcas de Scalibur, uso el ARG_ID
+                    // para pasar la URL
+                    Fragment fragmento = new WebFragment();
+                    Bundle args = new Bundle();
+                    args.putString(WebFragment.ARG_URL, intent.getStringExtra(ARG_ID));
+                    fragmento.setArguments(args);
+
+                    FragmentManager fragmentoManager = getSupportFragmentManager();
+                    fragmentoManager.beginTransaction()
+                            .add(R.id.content_frame, fragmento, null)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        }
+    }
+
+    public void initGCM(){
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                SharedPreferences sharedPreferences =
+                        PreferenceManager.getDefaultSharedPreferences(context);
+                boolean sentToken = sharedPreferences
+                        .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
+                if (sentToken) {
+                    Log.i(TAG, "Token enviado");
+                } else {
+                    Log.i(TAG, "Problema en token");
+                }
+            }
+        };
+
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Intent intent = new Intent(this, RegistrationIntentService.class);
+            startService(intent);
+        }
+    }
+
+    /**
+     * Check the device to make sure it has the Google Play Services APK. If
+     * it doesn't, display a dialog that allows users to download the APK from
+     * the Google Play Store or enable it in the device's system settings.
+     */
+    private boolean checkPlayServices() {
+        GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (apiAvailability.isUserResolvableError(resultCode)) {
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                        .show();
+            } else {
+                Log.i(TAG, "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
     /* Called whenever we call invalidateOptionsMenu() */
