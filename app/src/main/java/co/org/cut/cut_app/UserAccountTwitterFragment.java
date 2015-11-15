@@ -1,6 +1,7 @@
 package co.org.cut.cut_app;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.ListFragment;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -20,6 +23,7 @@ import com.twitter.sdk.android.tweetui.TimelineResult;
 import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
 
+import co.org.cut.cut_app.herramientas.App_cut;
 import io.fabric.sdk.android.Fabric;
 
 
@@ -27,6 +31,7 @@ public class UserAccountTwitterFragment extends ListFragment {
     public static final String ARG_USER_ACCOUNT = "cuenta";
     private String cuenta;
 
+    public static Tracker mTracker;
 
     public UserAccountTwitterFragment() {
         TwitterAuthConfig authConfig =  new TwitterAuthConfig("S1MLsZpnXYWI0IOlP3wdxz1Q5", "KLxu6F6sObGLKYQzejD7G6UFRhbXCbrhw9V8duxRspSpI7DKO6");
@@ -39,6 +44,13 @@ public class UserAccountTwitterFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             cuenta = getArguments().getString(ARG_USER_ACCOUNT);
+
+            String STR_VISTA = cuenta;
+
+            App_cut application = (App_cut) getActivity().getApplicationContext();
+            mTracker = application.getDefaultTracker();
+            mTracker.setScreenName(STR_VISTA);
+            mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         }
     }
 
@@ -78,5 +90,4 @@ public class UserAccountTwitterFragment extends ListFragment {
 
         return view;
     }
-
 }

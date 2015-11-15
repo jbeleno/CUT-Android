@@ -9,9 +9,16 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
+import co.org.cut.cut_app.herramientas.App_cut;
+
 public class WebFragment extends Fragment {
     public static final String ARG_URL = "url";
     private String url;
+
+    public static Tracker mTracker;
 
     public static WebFragment newInstance(String url) {
         WebFragment fragment = new WebFragment();
@@ -30,6 +37,13 @@ public class WebFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             url = getArguments().getString(ARG_URL);
+
+            String STR_VISTA = url;
+
+            App_cut application = (App_cut) getActivity().getApplicationContext();
+            mTracker = application.getDefaultTracker();
+            mTracker.setScreenName(STR_VISTA);
+            mTracker.send(new HitBuilders.ScreenViewBuilder().build());
         }
     }
 

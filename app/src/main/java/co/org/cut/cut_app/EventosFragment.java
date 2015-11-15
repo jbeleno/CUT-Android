@@ -2,6 +2,7 @@ package co.org.cut.cut_app;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +41,8 @@ import co.org.cut.cut_app.modelos.EventosEntry;
 public class EventosFragment extends Fragment {
     public String URL_EVENTOS = "http://52.27.16.14/cut/eventos/ver";
     public String ARG_OFFSET = "offset";
+
+    public static Tracker mTracker;
 
     String STR_ESTADO = "status";
     String STR_ESTADO_OK = "OK";
@@ -225,5 +230,17 @@ public class EventosFragment extends Fragment {
                     }
             }
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        String STR_VISTA = "Eventos";
+
+        App_cut application = (App_cut) context.getApplicationContext();
+        mTracker = application.getDefaultTracker();
+        mTracker.setScreenName(STR_VISTA);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }

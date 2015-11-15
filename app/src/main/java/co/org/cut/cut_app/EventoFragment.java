@@ -17,6 +17,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,6 +34,8 @@ public class EventoFragment extends Fragment {
     public String URL_EVENTO = "http://52.27.16.14/cut/eventos/detalle";
     public static final String ARG_ID_EVENTO = "idEvento";
     private String idEvento;
+
+    public static Tracker mTracker;
 
     String STR_ESTADO = "status";
     String STR_ESTADO_OK = "OK";
@@ -116,6 +121,14 @@ public class EventoFragment extends Fragment {
                         }else{
                             imagen.setImageResource(android.R.color.transparent);
                         }
+
+                        //Analytics
+                        String STR_VISTA = evento.getString(STR_NOMBRE);
+
+                        App_cut application = (App_cut) getActivity().getApplicationContext();
+                        mTracker = application.getDefaultTracker();
+                        mTracker.setScreenName(STR_VISTA);
+                        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
                     }else{
                         //En caso que se estallé la app por un servicio con mal formato

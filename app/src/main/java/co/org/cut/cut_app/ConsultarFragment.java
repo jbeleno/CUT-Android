@@ -18,6 +18,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
@@ -29,6 +32,9 @@ import co.org.cut.cut_app.herramientas.MyVolley;
 
 public class ConsultarFragment extends Fragment {
     public String URL_CONSULTAR = "http://52.27.16.14/cut/consultas/nueva";
+
+    public static Tracker mTracker;
+
     private String ARG_CORREO = "correo";
     private String ARG_CONSULTA = "mensaje";
     String STR_ERROR = "Ocurrió un error cargando enviando la consulta a la CUT.";
@@ -63,7 +69,7 @@ public class ConsultarFragment extends Fragment {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InputMethodManager imm =  (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
                 enviarConsulta();
@@ -128,5 +134,17 @@ public class ConsultarFragment extends Fragment {
                 if(getActivity() != null)Mensaje.mostrar(STR_ERROR, getActivity());
             }
         };
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        String STR_VISTA = "Consultar";
+
+        App_cut application = (App_cut) context.getApplicationContext();
+        mTracker = application.getDefaultTracker();
+        mTracker.setScreenName(STR_VISTA);
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 }
