@@ -16,14 +16,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:padding="8dp"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:id="@+id/evento_nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="@color/naranja_oscuro"
+            android:textColor="@color/gris_oscuro"
+            android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
         <TextView
@@ -31,37 +33,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:textColor="@color/gris_oscuro"
+            android:textColor="@color/gris"
             android:layout_marginBottom="8dp"
             android:scrollHorizontally="true"
             android:ellipsize="end"
-            android:maxLines="3"/>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gris_claro"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginEnd="5dp"
-            android:src="@drawable/ic_clock_gris"/>
+            android:maxLines="3" />
 
         <TextView
-            android:id="@+id/evento_tiempo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/gris_oscuro"/>
+            android:textSize="14sp"
+            android:textColor="@color/naranja"
+            android:textStyle="bold"
+            android:text="@string/read_more"
+            android:layout_marginBottom="8dp"/>
+
 
     </LinearLayout>
 

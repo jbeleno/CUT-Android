@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blanco">#FFFFFF</color>
-    <color name="gris_claro">#F2F2F2</color>
+    <color name="gris_ultraclaro">#F2F2F2</color>
+    <color name="gris_claro">#DDDDDD</color>
+    <color name="gris_semiclaro">#BBBBBB</color>
+    <color name="gris">#7C7C7C</color>
     <color name="gris_oscuro">#555555</color>
     <color name="naranja">#E55C34</color>
     <color name="naranja_oscuro">#E65100</color>

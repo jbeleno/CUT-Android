@@ -1,7 +1,5 @@
 package co.org.cut.cut_app;
 
-
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,10 +50,8 @@ public class EventosFragment extends Fragment {
     String STR_ID_EVENTO = "id";
     String STR_NOMBRE = "titulo";
     String STR_DESCRIPCION = "descripcion";
-    String STR_TIEMPO = "tiempo";
     String STR_IMAGEN = "imagen";
 
-    private ProgressDialog progress;
     private SwipeRefreshLayout swipeLayout;
     private int offset = 0;
     boolean final_scroll = false;
@@ -62,6 +59,7 @@ public class EventosFragment extends Fragment {
     private EventosAdapter adaptador;
     private ArrayList<EventosEntry> entradas = new ArrayList<>();
     private ListView listaEventos;
+    private TextView loadingText;
 
     public EventosFragment() {
         // Required empty public constructor
@@ -79,6 +77,7 @@ public class EventosFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_eventos, container, false);
 
         listaEventos =  (ListView) view.findViewById(R.id.eventos_data);
+        loadingText = (TextView) view.findViewById(R.id.loading_text);
 
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_eventos);
         swipeLayout.setOnRefreshListener(new RefreshListener());
@@ -90,7 +89,6 @@ public class EventosFragment extends Fragment {
     }
 
     public void cargarEventos(){
-        progress = ProgressDialog.show(getActivity(), getString(R.string.app_name), getString(R.string.app_name), true);
         RequestQueue queue = MyVolley.getRequestQueue();
 
         StringRequest myReq = new StringRequest(Request.Method.POST,
@@ -111,7 +109,7 @@ public class EventosFragment extends Fragment {
         return new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                progress.dismiss();
+                loadingText.setVisibility(View.GONE);
                 try{
                     JSONObject jsonObj = new JSONObject(response);
                     Log.d(App_cut.getTag(), jsonObj.toString());
@@ -124,11 +122,10 @@ public class EventosFragment extends Fragment {
 
                                 int IdEvento = publicacion.getInt(STR_ID_EVENTO);
                                 String nombre = publicacion.getString(STR_NOMBRE);
-                                String tiempo = publicacion.getString(STR_TIEMPO);
                                 String imagen = publicacion.getString(STR_IMAGEN);
                                 String descripcion = publicacion.getString(STR_DESCRIPCION);
 
-                                entradas.add(new EventosEntry(IdEvento, nombre, imagen, descripcion, tiempo));
+                                entradas.add(new EventosEntry(IdEvento, nombre, imagen, descripcion));
                             }
                             if (offset == 0) {
                                 adaptador = new EventosAdapter(getActivity(), 0, entradas, MyVolley.getImageLoader());
@@ -165,7 +162,7 @@ public class EventosFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //Se estalla por un error 404 o 500 en el servicio
-                progress.dismiss();
+                loadingText.setVisibility(View.GONE);
                 Log.e(App_cut.getTag(), error.toString());
                 if(getActivity() != null) Mensaje.mostrar(STR_ERROR, getActivity());
             }

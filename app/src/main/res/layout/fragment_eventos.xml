@@ -1,19 +1,34 @@
-<android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/swipe_eventos"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/gris_ultraclaro"
     android:clickable="true">
 
-    <ListView
-        android:id="@+id/eventos_data"
+    <TextView android:id="@+id/loading_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/gris_claro"
-        android:dividerHeight="8dp"
-        android:background="@color/gris_claro"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="4dp"/>
+        android:textColor="@color/gris"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/cargando_eventos"/>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_eventos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/eventos_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/gris_ultraclaro"
+            android:dividerHeight="8dp"
+            android:background="@color/gris_ultraclaro"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+ </LinearLayout>

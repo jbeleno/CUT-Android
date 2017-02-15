@@ -12,6 +12,13 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
 
+    <!-- Noticias -->
+    <string name="cargando_noticias">Cargando noticias&#8230;</string>
+
+    <!-- Eventos -->
+    <string name="read_more">LEER MÁS</string>
+    <string name="cargando_eventos">Cargando eventos&#8230;</string>
+
     <!-- Información Fragment -->
     <string name="informacion_address">Calle 35 Nº 7&#8211;25 / Piso 9</string>
     <string name="informacion_telefono">PBX: 323 75 50 </string>
@@ -25,6 +32,8 @@
     <string name="placeholder_correo">Escribe aquí tu correo electrónico</string>
     <string name="placeholder_consulta">Escribe aquí tu consulta acerca de temas laborales, sindicales, etc.</string>
     <string name="btnConsultar">Enviar</string>
+    <string name="lbl_email">EMAIL</string>
+    <string name="lbl_consulta">CONSULTA (Temas laborales, sindicales, etc.)</string>
 
     <!-- Evento -->
     <string name="titulo_agenda">Agenda</string>

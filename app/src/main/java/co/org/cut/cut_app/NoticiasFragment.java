@@ -1,6 +1,5 @@
 package co.org.cut.cut_app;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -54,7 +55,6 @@ public class NoticiasFragment extends Fragment {
     String STR_IMAGEN = "imagen";
     String STR_URL = "url";
 
-    private ProgressDialog progress;
     private SwipeRefreshLayout swipeLayout;
     private int offset = 0;
     boolean final_scroll = false;
@@ -62,6 +62,7 @@ public class NoticiasFragment extends Fragment {
     private NoticiasAdapter adaptador;
     private ArrayList<NoticiasEntry> entradas = new ArrayList<>();
     private ListView listaNoticias;
+    private TextView loadingText;
 
     public NoticiasFragment() {
         // Required empty public constructor
@@ -78,6 +79,7 @@ public class NoticiasFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_noticias, container, false);
         listaNoticias = (ListView) view.findViewById(R.id.noticias_data);
+        loadingText = (TextView) view.findViewById(R.id.loading_text);
 
         swipeLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(new RefreshListener());
@@ -89,7 +91,6 @@ public class NoticiasFragment extends Fragment {
     }
 
     public void cargarNoticias(){
-        progress = ProgressDialog.show(getActivity(), getString(R.string.app_name), getString(R.string.app_name), true);
         RequestQueue queue = MyVolley.getRequestQueue();
 
         StringRequest myReq = new StringRequest(Request.Method.POST,
@@ -110,7 +111,7 @@ public class NoticiasFragment extends Fragment {
         return new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                progress.dismiss();
+                loadingText.setVisibility(View.GONE);
                 try{
                     JSONObject jsonObj = new JSONObject(response);
                     Log.d(App_cut.getTag(), jsonObj.toString());
@@ -163,7 +164,7 @@ public class NoticiasFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //Se estalla por un error 404 o 500 en el servicio
-                progress.dismiss();
+                loadingText.setVisibility(View.GONE);
                 Log.e(App_cut.getTag(), error.toString());
                 if(getActivity() != null)Mensaje.mostrar(STR_ERROR, getActivity());
             }

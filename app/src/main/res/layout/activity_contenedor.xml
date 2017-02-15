@@ -45,15 +45,23 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        android:background="@color/gris_claro"
+        android:background="@color/blanco"
         android:clickable="true">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/banner_cut"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="20dp"/>
+            android:background="@color/naranja">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/banner_cut"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginStart="12dp"/>
+        </LinearLayout>
+
 
         <ListView android:id="@+id/left_drawer"
             android:layout_width="match_parent"
@@ -61,7 +69,7 @@
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"
-            android:background="@color/gris_claro"/>
+            android:background="@color/blanco"/>
 
     </LinearLayout>
     <!-- The navigation drawer -->

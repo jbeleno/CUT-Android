@@ -2,14 +2,13 @@ package co.org.cut.cut_app.modelos;
 
 public class EventosEntry {
     int idEvento;
-    String nombre,imagen, descripcion, tiempo;
+    String nombre,imagen, descripcion;
 
-    public EventosEntry(int idEvento, String nombre, String imagen, String descripcion, String tiempo){
+    public EventosEntry(int idEvento, String nombre, String imagen, String descripcion){
         this.idEvento = idEvento;
         this.nombre = nombre;
         this.imagen = imagen;
         this.descripcion = descripcion;
-        this.tiempo = tiempo;
     }
 
     public int getIdEvento() {
@@ -28,10 +27,6 @@ public class EventosEntry {
         return nombre;
     }
 
-    public String getTiempo() {
-        return tiempo;
-    }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -46,9 +41,5 @@ public class EventosEntry {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public void setTiempo(String tiempo) {
-        this.tiempo = tiempo;
     }
 }

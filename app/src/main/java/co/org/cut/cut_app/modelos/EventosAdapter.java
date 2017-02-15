@@ -62,7 +62,6 @@ public class EventosAdapter extends ArrayAdapter<EventosEntry> {
 
         holder.nombre.setText(entry.getNombre());
         holder.descripcion.setText(entry.getDescripcion());
-        holder.tiempo.setText(entry.getTiempo());
         holder.imagen.setDefaultImageResId(R.drawable.img_placeholder);
 
         if(entry.getImagen() != null && !entry.getImagen().equals("")){
@@ -87,7 +86,6 @@ public class EventosAdapter extends ArrayAdapter<EventosEntry> {
         public ViewHolder(View v){
             nombre = (TextView) v.findViewById(R.id.evento_nombre);
             descripcion = (TextView) v.findViewById(R.id.evento_descripcion);
-            tiempo = (TextView) v.findViewById(R.id.evento_tiempo);
             imagen = (NetworkImageView) v.findViewById(R.id.evento_imagen);
 
             v.setTag(this);

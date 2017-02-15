@@ -1,16 +1,31 @@
-<android.support.v4.widget.SwipeRefreshLayout
-    android:id="@+id/swipe_container"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:clickable="true">
+    android:orientation="vertical"
+    android:clickable="true"
+    android:background="@color/blanco">
 
-    <ListView
-        android:id="@+id/noticias_data"
+    <TextView android:id="@+id/loading_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/gris_oscuro"
-        android:dividerHeight="1dp"
-        android:background="@color/gris_claro"/>
+        android:textColor="@color/gris"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/cargando_noticias"/>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/swipe_container">
+
+        <ListView
+            android:id="@+id/noticias_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/gris_claro"
+            android:dividerHeight="1dp"
+            android:background="@color/blanco"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
+

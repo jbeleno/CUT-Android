@@ -1,7 +1,6 @@
 package co.org.cut.cut_app;
 
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
@@ -46,8 +45,6 @@ public class EventoFragment extends Fragment {
     String STR_AGENDA = "agenda";
     String STR_IMAGEN = "imagen";
 
-    private ProgressDialog progress;
-
     public TextView nombre, descripcion, agenda;
     public NetworkImageView imagen;
 
@@ -81,7 +78,6 @@ public class EventoFragment extends Fragment {
     }
 
     public void cargarEvento(){
-        progress = ProgressDialog.show(getActivity(), getString(R.string.app_name), getString(R.string.app_name), true);
         RequestQueue queue = MyVolley.getRequestQueue();
 
         StringRequest myReq = new StringRequest(Request.Method.POST,
@@ -101,7 +97,6 @@ public class EventoFragment extends Fragment {
         return new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                progress.dismiss();
                 try{
                     JSONObject jsonObj = new JSONObject(response);
                     Log.d(App_cut.getTag(), jsonObj.toString());
@@ -151,7 +146,6 @@ public class EventoFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 //Se estalla por un error 404 o 500 en el servicio
-                progress.dismiss();
                 Log.e(App_cut.getTag(), error.toString());
                 if(getActivity() != null) Mensaje.mostrar(STR_ERROR, getActivity());
             }
