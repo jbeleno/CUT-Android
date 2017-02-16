@@ -3,11 +3,13 @@
 
     <!-- Vista contenedor -->
     <string-array name="menu_array">
-        <item>NOTICIAS</item> // items
+        <item>NOTICIAS</item>
+        // items
         <item>EVENTOS</item>
         <item>REDES SOCIALES</item>
         <item>CONSULTAR</item>
-        <item>CUT COLOMBIA</item>
+        <item>INFORMACIÓN</item>
+        <item>CUT TV</item>
     </string-array>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -40,5 +42,8 @@
 
     <!-- Web -->
     <string name="cargando">Cargando&#8230;</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -67,7 +67,8 @@ public class Contenedor extends AppCompatActivity {
             R.drawable.ic_calendar_text,
             R.drawable.ic_twitter,
             R.drawable.ic_help_circle,
-            R.drawable.ic_information
+            R.drawable.ic_information,
+            R.drawable.ic_television_guide
     };
 
     @Override
@@ -324,8 +325,14 @@ public class Contenedor extends AppCompatActivity {
             case 3:
                 fragment= new ConsultarFragment();
                 break;
-            default:
+            case 4:
                 fragment= new InformacionFragment();
+                break;
+            default:
+                fragment = new TVFragment();
+                Bundle arguments = new Bundle();
+                arguments.putString(TVFragment.ARG_URL, "http://tv.cut.org.co/");
+                fragment.setArguments(arguments);
                 break;
         }
 
