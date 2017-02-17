@@ -55,6 +55,7 @@ public class WebFragment extends Fragment {
         WebView vistaWeb = (WebView) view.findViewById(R.id.vista_web);
         final TextView mensaje = (TextView) view.findViewById(R.id.mensaje);
 
+        vistaWeb.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         vistaWeb.getSettings().setJavaScriptEnabled(true);
         vistaWeb .loadUrl(url);
         vistaWeb.setWebViewClient(new WebViewClient() {

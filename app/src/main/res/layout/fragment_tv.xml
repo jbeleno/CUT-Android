@@ -15,7 +15,8 @@
             android:layout_height="match_parent"
             android:textColor="@color/gris_oscuro"
             android:gravity="center_horizontal|center_vertical"
-            android:text="@string/cargando" />
+            android:text="@string/cargando"
+            android:background="@android:color/transparent"/>
 
     </WebView>
 

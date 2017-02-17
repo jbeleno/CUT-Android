@@ -9,7 +9,6 @@ buildscript {
 }
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
-apply plugin: 'com.google.gms.google-services'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -25,14 +24,14 @@ android {
             storePassword 'cutcolombia'
         }
     }
-    compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    compileSdkVersion 25
+    buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "co.org.cut.cut_app"
         minSdkVersion 14
-        targetSdkVersion 23
-        versionCode 5
-        versionName "1.4"
+        targetSdkVersion 25
+        versionCode 6
+        versionName "1.5"
     }
     buildTypes {
         release {
@@ -48,13 +47,16 @@ dependencies {
     compile('com.twitter.sdk.android:twitter:1.9.1@aar') {
         transitive = true;
     }
-    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
         transitive = true;
     }
-    compile 'com.google.android.gms:play-services-gcm:8.1.0'
+    compile 'com.google.android.gms:play-services-gcm:10.2.0'
+    compile 'com.google.android.gms:play-services-analytics:10.2.0'
     compile 'com.mcxiaoke.volley:library:1.0.18'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
+    compile 'com.android.support:design:25.1.1'
+    compile 'com.android.support:support-v4:25.1.1'
 }
+
+apply plugin: 'com.google.gms.google-services'
