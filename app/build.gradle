@@ -20,7 +20,7 @@ android {
         config {
             keyAlias 'cutcolombia'
             keyPassword 'cutcolombia'
-            storeFile file('/Users/Developer_1DOC3/Desktop/CUT android keys/cutRelease.keystore')
+            storeFile file('/Users/Juan/Desktop/Otros/cutRelease.jks')
             storePassword 'cutcolombia'
         }
     }
